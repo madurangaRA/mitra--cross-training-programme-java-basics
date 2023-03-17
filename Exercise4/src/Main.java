@@ -1,10 +1,13 @@
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 /**
  * @author marathnamalala
+ *
+ *
+ * The letters are in the order of insertion so LinkedHashMap is taken here
+ *
  */
 public class Main {
 
