@@ -34,6 +34,8 @@ public class Main {
 
     ListIterator<String> it = stations.listIterator(stations.indexOf(start));
 
+    System.out.println("________");
+
     if (stations.indexOf(start) < stations.indexOf(destination)) {
 
       while (it.hasNext()) {
@@ -45,12 +47,14 @@ public class Main {
       }
     } else {
       while (it.hasPrevious()) {
-        String station = it.next();
+        String station = it.previous();
+        System.out.println(start);
         System.out.println(station);
         if (station.equals(destination)) {
           break;
         }
       }
     }
+    System.out.println("________");
   }
 }
