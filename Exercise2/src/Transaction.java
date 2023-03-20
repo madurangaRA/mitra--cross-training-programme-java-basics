@@ -1,15 +1,15 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * @author marathnamalala
  */
 public class Transaction {
     private int transactionId;
-    private Date transactionDate;
+    private LocalDate transactionDate;
     private double transactionAmount;
     private String transactionType;
 
-    public Transaction(int transactionId, Date transactionDate, double transactionAmount, String transactionType) {
+    public Transaction(int transactionId, LocalDate transactionDate, double transactionAmount, String transactionType) {
         this.transactionId = transactionId;
         this.transactionDate = transactionDate;
         this.transactionAmount = transactionAmount;
@@ -38,7 +38,7 @@ public class Transaction {
      *
      * @return transactionDate
      */
-    public Date getTransactionDate() {
+    public LocalDate getTransactionDate() {
         return this.transactionDate;
     }
 
@@ -46,7 +46,7 @@ public class Transaction {
      * set field
      *
      */
-    public void setTransactionDate(Date transactionDate) {
+    public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
 

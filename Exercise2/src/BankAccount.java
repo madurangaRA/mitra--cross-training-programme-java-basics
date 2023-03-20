@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.LinkedList;
 
 /**
  * @author marathnamalala
@@ -10,7 +10,7 @@ public class BankAccount {
   private double accountBalance;
   private String accountType;
 
-  private List<Transaction> transactionHistory;
+  private LinkedList<Transaction> transactionHistory;
 
 
   public BankAccount(int accountNumber, String accountHolderName, double accountBalance,
@@ -128,5 +128,15 @@ public class BankAccount {
     for (Transaction transaction : transactionHistory) {
       System.out.println(transaction.toString());
     }
+  }
+
+  /**
+   * Updates transaction history.
+   *
+   * @param transaction the transaction
+   */
+  public void updateTransactionHistory(Transaction transaction) {
+
+    transactionHistory.add(transaction);
   }
 }
