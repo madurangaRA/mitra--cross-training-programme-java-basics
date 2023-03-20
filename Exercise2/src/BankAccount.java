@@ -1,4 +1,6 @@
+import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 /**
  * @author marathnamalala
@@ -87,9 +89,13 @@ public class BankAccount {
   /**
    * Deposit.
    *
-   * @param amount the amount
    */
-  public void deposit(double amount) {
+  public void deposit() {
+
+    System.out.println("Please Enter the Amount");
+    Scanner scanner = new Scanner(System.in);
+    double amount = scanner.nextDouble();
+
     if (amount <= 0) {
       System.out.println("Deposit amount  cannot be a negative value");
       return;
@@ -97,14 +103,22 @@ public class BankAccount {
 
     accountBalance += amount;
     System.out.println("New balance: " + accountBalance);
+    Transaction transaction = new Transaction(new Util().randomNumber(), LocalDate.now(),
+        amount, "deposit");
+    updateTransactionHistory(transaction);
   }
 
   /**
    * Withdraw.
    *
-   * @param amount the amount
    */
-  public void withdraw(double amount) {
+  public void withdraw() {
+
+    System.out.println("Please Enter the Amount");
+
+    Scanner scanner2 = new Scanner(System.in);
+    double amount = scanner2.nextDouble();
+
     if (amount <= 0) {
       System.out.println("Withdraw amount  cannot be a negative value");
       return;
@@ -117,6 +131,10 @@ public class BankAccount {
 
     accountBalance -= amount;
     System.out.println("New balance: " + accountBalance);
+
+    Transaction transaction = new Transaction(new Util().randomNumber(), LocalDate.now(),
+        getAccountBalance(), "withdraw");
+        updateTransactionHistory(transaction);
   }
 
   /**

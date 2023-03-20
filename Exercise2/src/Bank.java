@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * @author marathnamalala
@@ -16,38 +17,95 @@ public class Bank {
 
   /**
    * Add customer to customer list.
-   *
-   * @param customer the customer
    */
-  public void addCustomer(Customer customer) {
+  public void addCustomer() {
+
+    Customer customer = new Customer();
+    customer.setCustomerId(new Util().randomNumber());
+
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Customer Name:");
+    customer.setCustomerName(scanner.nextLine());
+
+    Scanner scanner2 = new Scanner(System.in);
+    System.out.println("Customer Email:");
+    customer.setEmailAddress(scanner2.nextLine());
+
+    Scanner scanner3 = new Scanner(System.in);
+    System.out.println(
+        "Customer Mobile Number (Should be a 10 digit number with no space and without country code ex: 0705007777):");
+    customer.setPhoneNumber(scanner3.nextLine());
+
+    System.out.println(
+        "Customer created successfully! The customer id is " + customer.getCustomerId());
+
     customerMap.put(customer.getCustomerId(), customer);
+
+    System.out.println(customer.toString());
   }
 
   /**
    * Remove customers from customer list.
-   *
-   * @param customer the customer
    */
-  public void removeCustomer(Customer customer) {
-    customerMap.remove(customer.getCustomerId());
+  public void removeCustomer() {
+
+    System.out.println("Enter customer id you need to remove");
+    Scanner scanner4 = new Scanner(System.in);
+    customerMap.remove(scanner4.nextInt());
   }
 
   /**
    * Add Bank Accounts to Bank Account list.
-   *
-   * @param bankAccount the bank account
    */
-  public void addBankAccount(BankAccount bankAccount) {
+  public void addBankAccount() {
+
+    Scanner scanner5 = new Scanner(System.in);
+    System.out.println("Account Holder Name:");
+    String holderName = scanner5.nextLine();
+
+    System.out.println("Account Type:");
+    System.out.println("[1] Saving");
+    System.out.println("[2] Current");
+    Scanner scanner6 = new Scanner(System.in);
+    int accountTypeId = scanner6.nextInt();
+
+    String accountType;
+
+    if (accountTypeId == 1) {
+      accountType = "Saving";
+    } else if (accountTypeId == 2) {
+      accountType = "Current";
+    } else {
+      System.out.println("Wrong Input Please try again");
+      return;
+    }
+    System.out.println("Enter Initial Balance :");
+    Scanner scanner7 = new Scanner(System.in);
+    double initialAmount = scanner7.nextDouble();
+    if (initialAmount < 0) {
+      System.out.println("Invalid initial balance.");
+      return;
+    }
+    BankAccount bankAccount = new BankAccount(new Util().randomNumber(), holderName,
+        initialAmount,
+        accountType);
+
     bankAccountMap.put(bankAccount.getAccountNumber(), bankAccount);
+
+    System.out.println("Bank account created successfully! The Bank account number is "
+        + bankAccount.getAccountNumber());
+
+    System.out.println(bankAccount.toString());
+
   }
 
   /**
    * Remove bank accounts from Bank Account list.
-   *
-   * @param bankAccountNumber the bank account number
    */
-  public void removeBankAccount(int bankAccountNumber) {
-    bankAccountMap.remove(bankAccountNumber);
+  public void removeBankAccount() {
+    System.out.println("Please Enter the Bank Account Number");
+    Scanner scanner8 = new Scanner(System.in);
+    bankAccountMap.remove(scanner8.nextInt());
   }
 
   /**
@@ -55,8 +113,11 @@ public class Bank {
    */
   public void displayBankAccountsDetails() {
 
-    for (BankAccount bankAccount : bankAccountMap.values()) {
+    if(bankAccountMap.isEmpty()){
+      System.out.println("No customer records available");
+    }
 
+    for (BankAccount bankAccount : bankAccountMap.values()) {
       System.out.println("---------");
       System.out.println("Account Holder Name : " + bankAccount.getAccountHolderName());
       System.out.println("Account Number : " + bankAccount.getAccountNumber());
@@ -87,6 +148,10 @@ public class Bank {
    * Display  Customers
    */
   public void displayCustomers() {
+
+    if(customerMap.isEmpty()){
+      System.out.println("No customer records available");
+    }
 
     for (Customer customer : customerMap.values()) {
 
@@ -123,7 +188,6 @@ public class Bank {
    * @return the customer
    */
   public Customer getCustomer(int customerId) {
-
     return customerMap.get(customerId);
   }
 
@@ -134,7 +198,6 @@ public class Bank {
    * @return the account
    */
   public BankAccount getAccount(int accountId) {
-
     return bankAccountMap.get(accountId);
   }
 }
