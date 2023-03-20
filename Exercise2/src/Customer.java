@@ -13,6 +13,8 @@ public class Customer {
   private String emailAddress;
   private String phoneNumber;
 
+  public Customer() {}
+
   /**
    * Instantiates a new Customer.
    *
@@ -125,7 +127,7 @@ public class Customer {
   /**
    * Checks whether mobile number is valid
    *
-   * @param mobile
+   * @param mobile mobile number
    * @return boolean
    */
   private boolean isPhoneNumberValid(String mobile) {
@@ -134,5 +136,15 @@ public class Customer {
     Pattern pattern = Pattern.compile(phoneRegex);
     Matcher matcher = pattern.matcher(mobile);
     return matcher.matches();
+  }
+
+  @Override
+  public String toString() {
+    return "Customer{" +
+        "customerId=" + customerId +
+        ", customerName='" + customerName + '\'' +
+        ", emailAddress='" + emailAddress + '\'' +
+        ", phoneNumber='" + phoneNumber + '\'' +
+        '}';
   }
 }

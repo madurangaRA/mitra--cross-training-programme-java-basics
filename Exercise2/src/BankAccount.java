@@ -10,8 +10,7 @@ public class BankAccount {
   private double accountBalance;
   private String accountType;
 
-  private LinkedList<Transaction> transactionHistory;
-
+  private final LinkedList<Transaction> transactionHistory = new LinkedList<>();
 
   public BankAccount(int accountNumber, String accountHolderName, double accountBalance,
       String accountType) {
@@ -138,5 +137,16 @@ public class BankAccount {
   public void updateTransactionHistory(Transaction transaction) {
 
     transactionHistory.add(transaction);
+  }
+
+  @Override
+  public String toString() {
+    return "BankAccount{" +
+        "accountNumber=" + accountNumber +
+        ", accountHolderName='" + accountHolderName + '\'' +
+        ", accountBalance=" + accountBalance +
+        ", accountType='" + accountType + '\'' +
+        ", transactionHistory=" + transactionHistory +
+        '}';
   }
 }
